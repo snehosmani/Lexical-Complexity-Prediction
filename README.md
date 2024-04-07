@@ -1,4 +1,7 @@
 # Lexical-Complexity-Prediction
+This repo is an implementation of Task 1 of SemEval-2021 competition. You can find more info here: https://sites.google.com/view/lcpsharedtask2021
+
+This is supervised ML problem, I have used Stacked RNN's to achieve the goal -> predicting the complexity of a word in a given sentence.
 
 1) Please maintain the folder structure while executing the code. Just upload them to the same directory where the code resides.
 2) All the files should be in the same directory, I have not created any separate folders for data or the models that were generated.

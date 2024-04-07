@@ -1,0 +1,56 @@
+Model: "model"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ input_1 (InputLayer)           [(None, 662)]        0           []                               
+                                                                                                  
+ input_2 (InputLayer)           [(None, 1)]          0           []                               
+                                                                                                  
+ embedding (Embedding)          (None, 662, 128)     1280000     ['input_1[0][0]']                
+                                                                                                  
+ embedding_1 (Embedding)        (None, 1, 128)       1280000     ['input_2[0][0]']                
+                                                                                                  
+ lstm (LSTM)                    (None, 662, 64)      49408       ['embedding[0][0]']              
+                                                                                                  
+ lstm_3 (LSTM)                  (None, 1, 64)        49408       ['embedding_1[0][0]']            
+                                                                                                  
+ lstm_1 (LSTM)                  (None, 662, 32)      12416       ['lstm[0][0]']                   
+                                                                                                  
+ lstm_4 (LSTM)                  (None, 1, 32)        12416       ['lstm_3[0][0]']                 
+                                                                                                  
+ lstm_2 (LSTM)                  (None, 16)           3136        ['lstm_1[0][0]']                 
+                                                                                                  
+ lstm_5 (LSTM)                  (None, 16)           3136        ['lstm_4[0][0]']                 
+                                                                                                  
+ batch_normalization (BatchNorm  (None, 16)          64          ['lstm_2[0][0]']                 
+ alization)                                                                                       
+                                                                                                  
+ batch_normalization_1 (BatchNo  (None, 16)          64          ['lstm_5[0][0]']                 
+ rmalization)                                                                                     
+                                                                                                  
+ input_3 (InputLayer)           [(None, 3)]          0           []                               
+                                                                                                  
+ concatenate (Concatenate)      (None, 35)           0           ['batch_normalization[0][0]',    
+                                                                  'batch_normalization_1[0][0]',  
+                                                                  'input_3[0][0]']                
+                                                                                                  
+ dense (Dense)                  (None, 64)           2304        ['concatenate[0][0]']            
+                                                                                                  
+ batch_normalization_2 (BatchNo  (None, 64)          256         ['dense[0][0]']                  
+ rmalization)                                                                                     
+                                                                                                  
+ dropout (Dropout)              (None, 64)           0           ['batch_normalization_2[0][0]']  
+                                                                                                  
+ dense_1 (Dense)                (None, 32)           2080        ['dropout[0][0]']                
+                                                                                                  
+ batch_normalization_3 (BatchNo  (None, 32)          128         ['dense_1[0][0]']                
+ rmalization)                                                                                     
+                                                                                                  
+ dropout_1 (Dropout)            (None, 32)           0           ['batch_normalization_3[0][0]']  
+                                                                                                  
+ dense_2 (Dense)                (None, 1)            33          ['dropout_1[0][0]']              
+                                                                                                  
+==================================================================================================
+Total params: 2,694,849
+Trainable params: 2,694,593
+Non-trainable params: 256
